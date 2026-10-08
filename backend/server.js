@@ -10,6 +10,7 @@ const allowedOrigins = [
   process.env.CLIENT_URL // Vercel production URL
 ];
 
+
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -23,7 +24,9 @@ app.use(cors({
 
 // Middleware
 app.use(express.json());
-
+app.get('/', (req, res) => {
+  res.send('Restaurant API is running smoothly!');
+});
 // Routes
 app.use('/api/menu', require('./routes/menuRoutes'));
 app.use('/api/reservations', require('./routes/reservationRoutes'));
